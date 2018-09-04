@@ -1,4 +1,4 @@
-const data = [{
+const arr = [{
 	"id": 1,
 	"name": "Yong",
 	"phone": "010-0000-0000",
@@ -84,13 +84,13 @@ const data = [{
 // childnode 속성은 값으로 배열을 갖는다. 배열안의 값은 같은 구조를 가진다. (배열 -> 객체
 // 배열안에는 object 속성을 여러개 갖을 수 있다.
 const nameArr = [];
-var extractNameOfTypeIsSK = (data) => {
-    if((typeof data === "undefined") && (data.length === 0)) return;
+const extractNameOfType = (arr, type) => {
+    if((typeof arr === "undefined") && (arr.length === 0)) return;
 
-    data.forEach((obj) => {
-        if(obj.type === 'sk') nameArr.push(obj.name);
-        if(obj.childnode.length !== 0) extractNameOfTypeIsSK(obj.childnode);
+    arr.forEach((obj) => {
+        if(obj.type === type) nameArr.push(obj.name);
+        if(obj.childnode.length !== 0) extractNameOfType(obj.childnode, type);
     });
 }
-extractNameOfTypeIsSK(data);
+extractNameOfType(arr, "sk");
 console.log(nameArr);
